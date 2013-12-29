@@ -35,7 +35,7 @@ struct keyboard *kbd_head;
 void
 usage (void)
 {
-	fprintf (stderr, "usage: rasp KBD...\n");
+	fprintf (stderr, "usage: keycast KBD...\n");
 	exit (1);
 }
 
