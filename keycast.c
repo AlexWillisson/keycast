@@ -122,6 +122,8 @@ make_client (void)
 	struct client *cp;
 	struct sockaddr_in addr;
 
+	socklen = sizeof cp->addr;
+
 	fd = accept (listen_fd, (struct sockaddr *) &addr, &socklen);
 	if (fd < 0) {
 		fprintf (stderr, "strange accept error: %s\n",
