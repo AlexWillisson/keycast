@@ -280,6 +280,8 @@ main (int argc, char **argv)
 	for (idx = optind; idx < argc; idx++) {
 		s = xstrdup (argv[idx]);
 
+		printf ("kbd%d: %s\n", kid, s);
+
 		make_kbd (s, kid++);
 
 		free (s);
