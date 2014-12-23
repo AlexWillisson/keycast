@@ -36,32 +36,60 @@ get_secs (void)
 void
 process (char *buf)
 {
-	int num, value, code;
+	int num, value, code, r;
 
 	if (sscanf (buf, "kbd%d: %d %d", &num, &value, &code) == 3) {
 		printf ("kbd%d: btn %d %s\n", num, code,
 			value ? "pressed" : "released");
 		switch (code) {
 		case BELL:
-			if (value)
-				system ("notify-send 'doorbell!'");
+			if (value) {
+				r = system ("notify-send 'doorbell!'");
+
+				if (r) {
+					printf ("system call failed\n");
+				}
+			}
 			break;
 		case DOOR:
-			if (value)
-				system ("notify-send 'door opened!'");
-			else
-				system ("notify-send 'door closed!'");
+			if (value) {
+				r = system ("notify-send 'door opened!'");
+
+				if (r) {
+					printf ("system call failed\n");
+				}
+			} else {
+				r = system ("notify-send 'door closed!'");
+
+				if (r) {
+					printf ("system call failed\n");
+				}
+			}
 
 			break;
 		case BIGRED:
-			if (value)
-				system ("cmus-remote -u");
+			if (value) {
+				r = system ("cmus-remote -u");
+
+				if (r) {
+					printf ("system call failed\n");
+				}
+			}
 			break;
 		case SAFETY:
-			if (value)
-				system ("notify-send 'pressed'");
-			else
-				system ("notify-send 'releasedish'");
+			if (value) {
+				r = system ("notify-send 'pressed'");
+
+				if (r) {
+					printf ("system call failed\n");
+				}
+			} else {
+				r = system ("notify-send 'releasedish'");
+
+				if (r) {
+					printf ("system call failed\n");
+				}
+			}
 			break;
 		default:
 			break;
